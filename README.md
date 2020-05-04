@@ -1,2 +1,2 @@
 # api-limiter
-Limit api calls 
+Node scripts to limit api calls
