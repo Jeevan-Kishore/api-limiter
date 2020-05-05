@@ -6,7 +6,7 @@ const {rateData, rateLimit} =  require("./rate_limiter_data");
 
 const getRateLimiter = (apiService, limit) => {
     /* Counter for keeping track on the number of current executing api, outer scope to facilitate currying */
-    let counter = 0;
+    let processCounter = 0;
     const send = requestId => {
         return new Promise(resolve => {
             /* Preserve and clear intervalID to avoid memory leaks */
@@ -15,11 +15,11 @@ const getRateLimiter = (apiService, limit) => {
                 The API call should be made only if there is a slot available
                 i.e number of processes should be less than that of the limit
                 */
-                if(counter < limit){
+                if(processCounter < limit){
                     clearInterval(intervalID);
-                    counter = counter + 1;
+                    processCounter = processCounter + 1;
                     const response =  apiService(requestId).then((res) => {
-                        counter = counter - 1;
+                        processCounter = processCounter - 1;
                         return res;
                     });
                     resolve(response);
