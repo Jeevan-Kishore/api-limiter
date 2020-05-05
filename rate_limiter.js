@@ -5,23 +5,34 @@ Please ensure that before submitting, you do not have any console logs in your s
 const {rateData, rateLimit} =  require("./rate_limiter_data");
 
 const getRateLimiter = (apiService, limit) => {
-    // Your code here...
+    /* Counter for keeping track on the number of current executing api, outer scope to facilitate currying */
+    let counter = 0;
     const send = requestId => {
         return new Promise(resolve => {
-            // Your code here...
-            resolve();
+            /* Preserve and clear intervalID to avoid memory leaks */
+            const intervalID = setInterval( () => {
+                /*
+                The API call should be made only if there is a slot available
+                i.e number of processes should be less than that of the limit
+                */
+                if(counter < limit){
+                    clearInterval(intervalID);
+                    counter = counter + 1;
+                    const response =  apiService(requestId).then((res) => {
+                        counter = counter - 1;
+                        return res;
+                    });
+                    resolve(response);
+                }
+                /* Run it at 0 ms for accuracy of results */
+            }, 0);
+
         });
     };
 
     return { send }; // Do not change the return  type
 };
 
-
-const executor = () => {
-  /*
-  - only execute
-  */
-};
 
 
 
