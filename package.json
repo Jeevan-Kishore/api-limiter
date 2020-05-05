@@ -1,0 +1,22 @@
+{
+  "name": "api-limiter",
+  "version": "1.0.0",
+  "description": "a fuck all js problem",
+  "main": "rate_limiter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jeevan-Kishore/api-limiter.git"
+  },
+  "author": "Jeevan-Kishore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jeevan-Kishore/api-limiter/issues"
+  },
+  "homepage": "https://github.com/Jeevan-Kishore/api-limiter#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
