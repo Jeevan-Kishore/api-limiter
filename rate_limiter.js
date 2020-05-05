@@ -7,10 +7,9 @@ const {rateData, rateLimit} =  require("./rate_limiter_data");
 const getRateLimiter = (apiService, limit) => {
     // Your code here...
     const send = requestId => {
-        const response = apiService(requestId);
         return new Promise(resolve => {
             // Your code here...
-            resolve(response);
+            resolve();
         });
     };
 
