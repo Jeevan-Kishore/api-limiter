@@ -17,12 +17,6 @@ const getRateLimiter = (apiService, limit) => {
 };
 
 
-const executor = () => {
-  /*
-  - only execute
-  */
-};
-
 
 
 /* Anything below this remains unchanged */
